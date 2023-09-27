@@ -13,7 +13,7 @@ function Chat() {
 
   const sendMessage = () => {
     const APIKey = process.env.OPENAI_API_KEY;
-    
+
     if (!inputValue) {
       alert('Write a message...');
       return;
@@ -53,7 +53,7 @@ function Chat() {
     <div className="flex flex-col items-center h-auto mt-[2vh]">
       <div>
         <textarea 
-          className="resize-none w-[70vw] h-[70vh] bg-slate-950 opacity-[0.5] rounded-lg p-[1rem] shadow-md text-white" 
+          className="resize-none w-[70vw] h-[65vh] bg-slate-950 opacity-[0.5] rounded-lg p-[1rem] shadow-md text-white" 
           cols={70}
           disabled 
           placeholder="Response"
