@@ -13,7 +13,11 @@ function Chat() {
 
   const sendMessage = () => {
     const APIKey = process.env.OPENAI_API_KEY;
-    if (!inputValue) return;
+    
+    if (!inputValue) {
+      alert('Write a message...');
+      return;
+    }
     setIsLoading(true);
 
     fetch("https://api.openai.com/v1/completions", {
