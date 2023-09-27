@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AiOutlineSend } from 'react-icons/ai';
 
 function Chat() {
   const [inputValue, setInputValue] =  useState('');
@@ -45,10 +46,10 @@ function Chat() {
   }
 
   return (
-    <div className="flex flex-col items-center h-screen mt-[3.5vh]">
+    <div className="flex flex-col items-center h-auto mt-[2vh]">
       <div>
         <textarea 
-          className="resize-none w-[70vw] h-[70vh]" 
+          className="resize-none w-[70vw] h-[70vh] bg-slate-950 opacity-[0.5] rounded-lg p-[1rem] shadow-md text-white" 
           cols={70}
           disabled 
           placeholder="Response"
@@ -57,17 +58,21 @@ function Chat() {
         </textarea>
       </div>
 
-      <div className="flex space-x-1">
+      <div className="flex space-x-2 w-auto">
         <input
-          className="w-[65.9vw] bg-green-200 p-[1rem]"
+          className="w-[65.9vw] p-[1rem] rounded-lg border-solid border-x-[3px] border-y-[3px] outline-none shadow-sm"
           type="text"
           id="user-input"
           placeholder="Type your message.."
           onChange={handleChange}
-          value={inputValue}
+          value={inputValue}  
         />
-        <button className="bg-blue-200 p-[1rem]" onClick={sendMessage} disabled={isLoading}>
-          Send
+        <button 
+          className="p-[1rem] bg-green-400 text-3xl rounded-lg text-gray-600 hover:bg-green-500 shadow-md" 
+          onClick={sendMessage} 
+          disabled={isLoading}
+        >
+          <AiOutlineSend />
         </button>
       </div>
     
