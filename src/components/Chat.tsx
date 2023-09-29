@@ -18,7 +18,11 @@ function Chat() {
       alert('Write a message...');
       return;
     }
+    
     setIsLoading(true);
+
+    const context = "Reply to me as a fun manga and anime recommender based on my personal tastes that gives short answers."; 
+    const fullPrompt = context + inputValue;
 
     fetch("https://api.openai.com/v1/completions", {
       method: "POST",
@@ -29,7 +33,7 @@ function Chat() {
       },
       body: JSON.stringify({
         model: "text-davinci-003",
-        prompt: inputValue,
+        prompt: fullPrompt,
         max_tokens: 2048,
         temperature: 0.5, 
       }),
@@ -39,7 +43,7 @@ function Chat() {
         if (json.error?.message) {
           setResponse(`Error: ${json.error.message}`);
         } else if (json.choices?.[0].text) {
-          setResponse("Chat GPT: " + json.choices[0].text || "No response");
+          setResponse((prevResponse) => `${prevResponse}\nMe: ${inputValue}\n\nMangaAI: ${json.choices[0].text}` || "MangaAI developers are busy watching anime right no- they are doing server maintenance now hahaha. Please wait or refresh the page.");
         }
       })
       .catch((error) => console.error("Error:", error))
@@ -53,7 +57,7 @@ function Chat() {
     <div className="flex flex-col items-center h-auto mt-[2vh]">
       <div>
         <textarea 
-          className="resize-none w-[70vw] h-[65vh] bg-slate-950 opacity-[0.5] rounded-lg p-[1rem] shadow-md text-white" 
+          className="resize-none w-[70vw] h-[65vh] bg-slate-950 opacity-[0.8] rounded-lg p-[1rem] shadow-md text-white text-xl" 
           cols={70}
           disabled 
           placeholder="Response"
