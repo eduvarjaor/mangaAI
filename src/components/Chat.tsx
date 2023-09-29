@@ -12,7 +12,7 @@ function Chat() {
   }
 
   const sendMessage = () => {
-    const APIKey = process.env.OPENAI_API_KEY;
+    const APIKey = import.meta.env.VITE_OPENAI_API_KEY;
 
     if (!inputValue) {
       alert('Write a message...');
