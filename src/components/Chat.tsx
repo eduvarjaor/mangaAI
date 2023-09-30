@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AiOutlineSend } from 'react-icons/ai';
+import { AiOutlineSend, AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 function Chat() {
   const [inputValue, setInputValue] =  useState('');
@@ -88,7 +88,15 @@ function Chat() {
           onClick={sendMessage} 
           disabled={isLoading}
         >
-          {isLoading ? 'Loading...' : <AiOutlineSend />}
+           {isLoading ? (
+            window.innerWidth <= 480 ? (
+              <AiOutlineLoading3Quarters />
+            ) : (
+              'Loading...'
+            )
+          ) : (
+            <AiOutlineSend />
+          )}
         </button>
       </div>
     </div>
