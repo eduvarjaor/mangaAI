@@ -43,7 +43,7 @@ function Chat() {
         if (json.error?.message) {
           setResponse(`Error: ${json.error.message}`);
         } else if (json.choices?.[0].text) {
-          setResponse((prevResponse) => `${prevResponse}\nMe: ${inputValue}\n\nMangaAI: ${json.choices[0].text}` || "MangaAI developers are busy watching anime right no- they are doing server maintenance now hahaha. Please wait or refresh the page.");
+          setResponse((prevResponse) => `${prevResponse}\n🦊 Me: ${inputValue}\n\n🍥 MangaAI: ${json.choices[0].text}\n` || "MangaAI developers are busy watching anime right no- they are doing server maintenance now hahaha. Please wait or refresh the page.");
         }
       })
       .catch((error) => console.error("Error:", error))
@@ -53,37 +53,44 @@ function Chat() {
       });
   }
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      sendMessage();
+    }
+  }
+  
   return (
     <div className="flex flex-col items-center h-auto mt-[2vh]">
       <div>
         <textarea 
-          className="resize-none w-[70vw] h-[65vh] bg-slate-950 opacity-[0.8] rounded-lg p-[1rem] shadow-md text-white text-xl" 
+          className="resize-none lg:w-[70vw] xx:w-[88vw] h-[65vh] bg-slate-950 opacity-[0.8] rounded-lg p-[1rem] shadow-md text-white lg:text-xl" 
           cols={70}
           disabled 
-          placeholder="Response"
+          placeholder="🍜 Tell me about your tastes..."
           value={response}
-        >
-        </textarea>
+        />
       </div>
 
-      <div className="flex space-x-2 w-auto">
+      <div className="flex space-x-2 lg:w-[70vw]">
         <input
-          className="w-[65.9vw] p-[1rem] rounded-lg border-solid border-x-[3px] border-y-[3px] outline-none shadow-sm"
+          className="lg:w-[65.9vw] xx:w-[75vw] md:w-[81vw] p-[1rem] rounded-lg border-solid border-x-[3px] border-y-[3px] outline-none shadow-sm"
           type="text"
           id="user-input"
           placeholder="Type your message.."
           onChange={handleChange}
-          value={inputValue}  
+          onKeyDown={handleKeyDown}
+          value={inputValue}
+          disabled={isLoading}
         />
         <button 
-          className="p-[1rem] bg-green-400 text-3xl rounded-lg text-gray-600 hover:bg-green-500 shadow-md" 
+          className="p-[1rem] bg-green-400 lg:text-3xl rounded-lg text-gray-600 hover:bg-green-500 shadow-md" 
           onClick={sendMessage} 
           disabled={isLoading}
         >
-          <AiOutlineSend />
+          {isLoading ? 'Loading...' : <AiOutlineSend />}
         </button>
       </div>
-    
     </div>
   );
 }
