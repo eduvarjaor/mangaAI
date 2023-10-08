@@ -76,10 +76,6 @@ function Chat() {
       sendMessage();
     }
   }
-
-  const toggleChatBlock = () => {
-    setIsChatBlocked(!isChatBlocked);
-  }
   
   return (
     <div className="flex flex-col items-center h-auto mt-[2vh]">
