@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AiOutlineSend, AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 function Chat() {
   const [inputValue, setInputValue] =  useState('');
   const [response, setResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const textareaRef = useRef(null);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.scrollTop = textareaRef.current.scrollHeight;
+    }
+  }, [response]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
@@ -69,6 +76,7 @@ function Chat() {
           disabled 
           placeholder="🍜 Tell me about your tastes..."
           value={response}
+          ref={textareaRef}
         />
       </div>
 
