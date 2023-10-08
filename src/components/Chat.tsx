@@ -5,13 +5,23 @@ function Chat() {
   const [inputValue, setInputValue] =  useState('');
   const [response, setResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const textareaRef = useRef(null);
+  const [isChatBlocked, setIsChatBlocked] = useState(false);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.scrollTop = textareaRef.current.scrollHeight;
     }
-  }, [response]);
+
+    if (isChatBlocked && textareaRef.current) {
+      textareaRef.current.focus();
+    }
+
+    if (!isChatBlocked && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [response, isChatBlocked]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
@@ -66,6 +76,10 @@ function Chat() {
       sendMessage();
     }
   }
+
+  const toggleChatBlock = () => {
+    setIsChatBlocked(!isChatBlocked);
+  }
   
   return (
     <div className="flex flex-col items-center h-auto mt-[2vh]">
@@ -89,7 +103,8 @@ function Chat() {
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           value={inputValue}
-          disabled={isLoading}
+          disabled={isLoading || isChatBlocked}
+          ref={inputRef}
         />
         <button 
           className="p-[1rem] bg-green-400 lg:text-3xl rounded-lg text-gray-600 hover:bg-green-500 shadow-md" 
