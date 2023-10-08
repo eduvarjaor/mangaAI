@@ -5,7 +5,7 @@ function Chat() {
   const [inputValue, setInputValue] =  useState('');
   const [response, setResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isChatBlocked, setIsChatBlocked] = useState(false);
+  const [isChatBlocked] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
@@ -99,7 +99,7 @@ function Chat() {
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           value={inputValue}
-          disabled={isLoading || isChatBlocked}
+          disabled={isLoading}
           ref={inputRef}
         />
         <button 
