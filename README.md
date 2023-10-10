@@ -10,12 +10,12 @@ MangaAI is not just another recommendation app; it's your digital manga and anim
 
 ### Index
 
-- <a href="#📺-layout">Layout</a>
-- <a href="#🧰-requirements">Requirements</a>
-- <a href="#🌐-demonstration">Demonstration</a>
-- <a href="#🛠️-technologies-used">Technologies used</a>
+- <a href="#layout">Layout</a>
+- <a href="#requirements">Requirements</a>
+- <a href="#demonstration">Demonstration</a>
+- <a href="#technologies-used">Technologies used</a>
 
-### 📺 Layout
+### Layout
 
 <p align="center">
   <img src="public/images/PC.png" alt="PC">
@@ -25,7 +25,7 @@ MangaAI is not just another recommendation app; it's your digital manga and anim
   <img src="public/images/Phone.png" alt="Phone">
 </p>
 
-### 🧰 Requirements
+### Requirements
 
 Before getting started, make sure your machine has the following tools: [Git](https://git-scm.com/), [Node.js](https://nodejs.org/en). It is important to have a code editor too, such as [VSCode](https://code.visualstudio.com/).
 
@@ -45,11 +45,11 @@ $ pnpm run dev
 # The server will open on port:5173 - access http://localhost:5173/
 ```
 
-### 🌐 Demonstration
+### Demonstration
 
 [MangaAI](https://mangaai.netlify.app/)
 
-### 🛠️ Technologies used
+### Technologies used
 
 The project uses these tools:
 
