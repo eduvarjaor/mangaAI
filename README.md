@@ -39,6 +39,9 @@ $ cd MangaAI
 # Install dependencies
 $ pnpm i
 
+# Set environment variables
+$ VITE_OPENAI_API_KEY='your-key-here'
+
 # Execute the application in development mode
 $ pnpm run dev
 
